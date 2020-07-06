@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>ROCK PAPER SCISSORS: ODIN PROJECT</title>
+    <link href="./styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+
+      <section id="question" class="game-question">
+        <div class="game question">
+          <h2>Do you want to play ROCK PAPER SCISSORS with me?</h2>            
+        </div>
+        <div class="game-buttons">
+          <button class="play yes">YES</button>
+          <button class="play no">NO</button>
+        </div>
+      </section>
+      
+      <section id="choice" class="game choice-section hidden">
+        <div class="choice choice-text"><!-- wins-text -->
+          <h3 id="wins-text">WINS</h3>        
+          <div class="choice-wins">
+            <div class="wins user-wins">
+              <h4 class="wins-text">USER</h4>
+              <h4 class="wins-text wins-number">#</h4>
+            </div>             
+            <div class="wins computer-wins">
+              <h4 class="wins-text">COMP</h4>
+              <h4 class="wins-text wins-number">#</h4>
+            </div>
+          </div>
+        </div>
+        <div id="choice-header"> 
+          <h2 class="choice-header one">please 'CLICK' your choice now!</h2>  
+          <h2 class="choice-header two">ROCK, PAPER, or SCISSOR?</h2>  
+       </div>
+       
+        <div class="game-buttons choice-buttons">
+          <button class="play choice-btn rock">ROCK</button>
+          <button class="play choice-btn paper">PAPER</button>
+          <button class="play choice-btn scissors">SCISSORS</button>
+        </div>        
+      </section>
+      
+      <section id="play" class="game-play hidden">     
+        <div class="game play">
+          <h2>message</h2>
+        </div>        
+        <div class="game-buttons play-buttons">
+          <button class="computer-choice">YES</button>
+          <button class="user-choice">NO</button>
+        </div>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
