@@ -1,33 +1,53 @@
+.colors {
+    /* purple */
+    background-color: rgb(57, 26, 141);
+    /* light purple */
+    color: rgb(166, 152, 204);
+    /* white */
+    color:  rgb(214, 204, 243);
+    /* grey */
+    color: grey;
+    /* dark grey */
+    background-color: rgb(57, 52, 75);
+    /* lighter grey */
+    background-color: rgb(117, 101, 158);
+}
+
 body {
-    background-color: grey;
+    background-color: rgb(57, 52, 75);
     width: 100%;
+    display: grid;
+    justify-content: center;
 }
 
 main {
-    background-color: purple;
-    color: grey;
-    margin: 15% 10%;
-    padding: 3%;
+    background-color: rgb(57, 26, 141);
+    color: rgb(166, 152, 204);
+    margin: 50px;
+    padding: 20px;
     border-radius: 10px;
-    border: white solid 3px;
+    border:rgb(214, 204, 243) solid 5px;
+    width: 600px;
     height: auto;
 }
 
 button {
-    border: 1px white solid;
-    color: white;
-    background-color: grey;
-    font-weight: 900;
-    padding: 10px 40px;
     border-radius: 15px;
+    color: rgb(57, 26, 141);  
+    border: 2px rgb(214, 204, 243) solid;  
+    background-color: rgb(117, 101, 158);
+
+    padding: 13px 10px;
+    margin: 3%;
+
+    font-size: x-large;
+    font-weight: 900;
 }
 
 .game-buttons {
     display: flex;
     justify-content: space-around;
-    padding-bottom: 5%;
-    padding-left: 20%;
-    padding-right: 20%;
+    padding: 15px 60px;
 }
 
 .game {
@@ -38,11 +58,36 @@ button {
     width: auto;
 }
 
-.choice {
-    border: grey 1px dashed;
+#gameHeader, #gameOver {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 10% 0 5% 0;
+    padding-bottom: 2%;
+    border-bottom: rgb(166, 152, 204) 3px solid;  
+}
+
+.game-header {
+    font-size: 40px;
+    color: rgb(166, 152, 204);
+    letter-spacing: 4px;
+    word-spacing: 5px;
+    font-weight: 900;
+}
+
+#choice {
     border-radius: 15px;
-    margin: 0% 30%;
-    padding: 1% 1% 3% 1%;
+    margin: 3% 0;
+    padding: 0;
+}
+
+.choice {
+    background-color: rgb(117, 101, 158);
+    border: rgb(57, 52, 75) 15px double;
+    border: rgb(214, 204, 243) 5px douboe;
+    border-radius: 15px;
+    margin: 5% 10% 2% 10%;
+    padding-bottom: 1%;
 }
 
 .choice-section {
@@ -56,55 +101,156 @@ button {
     justify-content: space-around;
 }
 
-#wins-text {
-   width: 100%;
-   font-weight: 900;
-   margin-bottom: 3%;
-   font-size: large;
-} 
-
 .wins {
     text-align: center;
     width: auto;
+    margin: 1%;
 }
 
 .wins-text {
     width: auto;
-    font-size: small;
+    font-size: large;
+    font-weight: 900;
     text-align: center;
-    margin: 0;
+    margin: 1%;
+    color: rgb(57, 52, 75);
+    margin-bottom: 10px;
+}
+
+.wins-comp {
+    margin: 0 28%;
+}
+
+.wins-user {
+    margin: 0 5%; 
 }
 
 .wins-number {
-    font-size: medium;
-}
-#choice-header{
-    padding: 1% 15%;
+    font-size: xx-large;
+    border: 2px dotted rgb(57, 52, 75);
 }
 
-h2.choice-header {
+.text-choice {
+    font-size: xx-large;
+    color: rgb(57, 52, 75);
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-weight: 900;
+}
+
+.choice-header {
     display: flex;
-    justify-content: center;
+    justify-content: center;    
+    text-align: center;
+    width: 100%;
 }
 
-h2.choice-header.one{
-    font-size: medium;
+h2.choice-header.click {
+    color: rgb(166, 152, 204);   
+    font-size: 19px;
+    letter-spacing: 5px;
+    word-spacing: 5px;
+    font-weight: 500;
+    padding: 1px 5px;   
 }
 
-h2.choice-header.two {
-    font-size: extra-large;
-
+#score-choice {
+  padding: 0 0 4% 0;
 }
+
+
+#round-text{
+    width: 100%;
+    font-weight: 600;
+    margin-bottom: 1%;
+    font-size: small;
+} 
 
 .choice-buttons {
     text-align: center;    
     justify-content: space-around;
-    padding: 5px 75px;
+    padding: 5px 1px;
 }
 
 .choice-btn {
-    margin: 0 2%;
-} 
+    width: 30%;
+    margin: 8% 2% 0 2%;
+    padding: 20px 7px 15px 7px;
+}
+
+.round-btn {
+    margin: 1% 2% 2% 2%;
+    padding: 5px 30px;
+}   
+
+.play {
+    display: grid;
+}
+
+.game-play {
+    display: flex;
+    justify-content: center; 
+    border-top: 1px solid;  
+}
+
+.round-play {
+    display: block;
+    width: 50%;
+    margin: 10px;
+}
+
+.play-msg {
+    font-size: medium;
+    text-align: center;
+}
+
+.play-btn {
+    width: auto;
+    border-radius: 5px;
+
+    margin: 5% 20%;    
+    padding: 5px 10px;  
+
+    color:  rgb(57, 26, 141);
+    background-color:rgb(166, 152, 204);
+    border: 3px rgb(166, 152, 204) double;
+    
+    text-align: center;
+    font-size: large;
+    font-weight: 900;
+}    
+
+#nextRound {
+    border: 1px solid rgb(166, 152, 204);
+    margin: 5%;
+    margin-bottom: 0;
+}
+
+.round-message {
+    display: block;
+    padding: 1%;
+    color: rgb(166, 152, 204);
+}
+
+
+#round-outcome {
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    margin: 0;
+    border-radius: 5px;  
+}   
+
+#round-info {
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    margin: 0;
+    border-radius: 5px;  
+}      
+    /* color: rgb(57, 26, 141);
+    background-color: rgb(166, 152, 204); */
+    /* color: rgb(166, 152, 204); */
+    /* border: 1px solid rgb(166, 152, 204); */
+    /* background-color: transparent; */
 
 .hidden {
     display: none;

@@ -1,61 +1,68 @@
 const playOptions = ['ROCK', 'PAPER', 'SCISSORS'];
-let userPlay;
+let userPlay, computer;
 let userWins = 0;
 let computerWins = 0;
-let gameMessage = "";
+let gameMessage;
 
 document.onload = askGameQuestion();
-document.querySelector(".choice-buttons").addEventListener('click', playGame);
 
-function askGameQuestion() {
-  // document.querySelector("#question").classList.toggle("hidden");
-  // document.querySelector("#choice").classList.toggle("hidden");
+// document.querySelector(".choice-buttons").addEventListener('click', playGame);
+
+function askGameQuestion() {  
   document.querySelector(".yes").addEventListener('click', loadGame);
 }
 
 function loadGame() {
-  toggleView(question, choice);
-  displayWins();
+  document.querySelector("#gameHeader").innerText.includes("ROCK") ? loadFirstRound() : loadAdditionalRound();
 }
 
+function loadFirstRound() {
+  toggleView(question, choice);
+  displayWins();
+  document.querySelector(".choice-buttons").addEventListener('click', playGame);  
+}
+
+function loadAdditionalRound() {
+  toggleView(play, choiceBtns, questionText, playAgainText, question);
+  document.querySelector("#gameHeader").innerText = "ROCK PAPER SCISSORS!"; 
+  userWins = 0;
+  computerWins = 0;
+  displayWins();
+}
+// choiceBtns, questionText, playAgainText
+
 function displayWins() {
-  const wins = document.querySelectorAll(".wins")
-  wins[0].lastElementChild.innerText = userWins;
-  wins[1].lastElementChild.innerText = computerWins;
+  const score = document.querySelector(".score");
+  score.firstElementChild.lastElementChild.innerText = userWins;
+  score.lastElementChild.lastElementChild.innerText = computerWins;  
 }
 
 function toggleView(...views) {
   views.forEach(function(view) {
-    console.log('views: ', views);
-    let viewId = `.#${view}`;
-    console.log('viewId: ', viewId);
     view.classList.toggle("hidden");
-  // document.querySelector("#choice").classList.toggle("hidden");
   });
 }
 
-function playGame() {
-  toggleView(choice, play)
-  // var userWins = 0;
-  // var computerWins = 0;
-  // var gameMessage = "";
-    // for (var i = 0; i < 5; i++) {
-    promptUser();
-    gameMessage = oneRoundRPS(computerPlay(playOptions));
-    if (!gameMessage.includes("TIE")) {      
-      gameMessage.includes("User") ? userWins++ : computerWins++;
-    }
-    alert(`${gameMessage} score: USER ${userWins}pts vs COMPUTER ${computerWins}pts`);
-  // }
-  checkForDraw(userWins, computerWins);
+function playGame(event) {
+  findUserPlay(event);
+  let roundInfo = oneRoundRPS(getComputerPlay(playOptions));
+  keepScore(roundInfo);  
 }
 
-function promptUser() {
-  var userPrompt = prompt("ROCK, PAPER or SCISSORS? Enter your choice below!");
-  userPlay = (userPrompt !== null ? userPrompt : "").toUpperCase();
+function keepScore(message) {
+  if (!gameMessage.includes("TIE")) {      
+    gameMessage.includes("USER") ? userWins++ : computerWins++;
+    displayWins();
+  };
+  userWins === 5 || computerWins === 5 
+    ? checkForDraw(userWins, computerWins) : displayPlay(message);
 }
 
-function computerPlay(playOptions) { 
+function findUserPlay(event) {
+  userPlay = event.target.id.toUpperCase();
+}
+
+function getComputerPlay(playOptions) { 
   var rpsRandoms = [];       
   var randomIndex;
    for (var i = 0; i < playOptions.length - 1; i++) {
@@ -67,45 +74,95 @@ function computerPlay(playOptions) {
 }
 
 function oneRoundRPS(randomOptions) {
-  var user, roundMessage;
-  var computer = randomOptions[0];
-  user = userPlay === "ROCK" || userPlay === "PAPER" || userPlay === "SCISSORS" 
-  ? userPlay : randomOptions[1];
-  roundMessage = computer === user ? `TIE! Both of you were ${user}!`
-  : user === 'ROCK' && computer === 'SCISSORS' || 
-    user === 'PAPER' && computer === 'ROCK' ||
-    user === 'SCISSORS' && computer === 'PAPER' 
-  ? `User wins! ${user} beats ${computer}!` 
-    : `Computer wins! ${computer} beats ${user}!`;
-  return roundMessage;
+  let roundWin, roundWinner, roundLoser, roundInfo;
+  computerPlay = randomOptions[0];
+  roundWin = computerPlay === userPlay ? `TIE!` 
+    : userPlay === 'ROCK' && computerPlay === 'SCISSORS' 
+      || userPlay === 'PAPER' && computerPlay === 'ROCK' 
+      || userPlay === 'SCISSORS' && computerPlay === 'PAPER' 
+    ? "user" : "computer";
+  roundLoser = roundWin.includes("user") 
+    ? computerPlay : userPlay;
+  roundWinner = roundLoser === computerPlay 
+    ? userPlay : computerPlay;
+  if (roundWin === `TIE!`) {
+    gameMessage = "It's a TIE!"
+    roundInfo = `Both of you were ${userPlay}!`
+  } else {
+    gameMessage = `${roundWin.toUpperCase()} WINS THIS ROUND!` 
+    roundInfo = `${roundWinner} beats ${roundLoser}!`;    
+  };
+  return roundInfo;
+}
+
+function displayPlay(message) {
+  toggleView(play, choiceBtns, nextRound);
+  document.querySelector(".user-choice-btn").innerText = userPlay;
+  document.querySelector(".computer-choice-btn").innerText = computerPlay;
+  document.querySelector("#round-info").innerText = message;
+  document.querySelector("#round-outcome").innerText = gameMessage;
+  document.querySelector(".round-yes").addEventListener('click', playNextRound);
+} 
+
+function displayGameWinner(message) {
+  toggleView(play, choiceBtns, question, questionText, playAgainText);
+  document.querySelector("#round-info").innerText = message;
+  document.querySelector("#round-outcome").innerText = gameMessage;
+  document.querySelector("#gameHeader").innerText = "GAME OVER!";
+}
+
+function playNextRound() {
+  toggleView(play, choiceBtns, nextRound);
 }
 
 function checkForDraw(userScore, compScore) {
-  userScore === compScore ? tieBreakRound(userScore, compScore) : displayGameWinner(userScore, compScore);
+  userScore === compScore ? playGame() 
+    : findGameWinner(userScore, compScore);
 }
 
-function tieBreakRound(userScore, compScore) {
-    var gameMessage = oneRoundRPS(computerPlay(playOptions));
-  if (!gameMessage.includes("TIE")) {         
-    gameMessage.includes("User") ? userScore++ : compScore++;
-  };
-  checkForDraw(userScore, compScore);
-}
-
-function displayGameWinner(userScore, compScore) {
-  var gameWinner, winnerScore, loserScore, winMessage;
+function findGameWinner(userScore, compScore) {
+  let gameWinner, winnerScore, loserScore, gameInfo;
   gameWinner = userScore > compScore ? 'user' : 'computer';
   winnerScore = gameWinner === 'user' ? userScore : compScore;
   loserScore = gameWinner === 'user' ? compScore : userScore;
-  winMessage = `${gameWinner.toUpperCase()} WINS! SCORE: ${winnerScore} to ${loserScore}!`;
-  alert(winMessage);
-  promptPlayAgain();
+  gameMessage = `${gameWinner.toUpperCase()} WINS!`;
+  gameInfo = `SCORE: ${winnerScore} to ${loserScore}!`;
+  displayGameWinner(gameInfo);
 }
 
-function promptPlayAgain() {
-  var playAgainPrompt = prompt("PLAY AGAIN?? click OK to CONTINUE, click CANCEL to EXIT GAME", "type YES to continue or NO to exit game");
-  if (playAgainPrompt !== null) {
-  userPlay = playAgainPrompt.toUpperCase() !== "NO" ?
-    userPlay === "YES" || "" ? loadGame() : null : null;
-  };
-}
+// function promptPlayAgain() {
+//   var playAgainPrompt = prompt("PLAY AGAIN?? click OK to CONTINUE, click CANCEL to EXIT GAME", "type YES to continue or NO to exit game");
+//   if (playAgainPrompt !== null) {
+//   userPlay = playAgainPrompt.toUpperCase() !== "NO" ?
+//     userPlay === "YES" || "" ? loadGame() : null : null;
+//   };
+// }
+
+  
+// console.log(
+//   'roundWin, roundWinner, roundLoser: ', 
+//   roundWin, roundWinner, roundLoser
+// );
+// console.log(
+//   'gameMessage, roundInfo: ',
+//   gameMessage, roundInfo
+// );
+
+
+// function tieBreakRound(userScore, compScore) {
+//   playGame();
+//   if (!gameMessage.includes("TIE")) {         
+//     gameMessage.includes("User") ? userScore++ : compScore++;
+//   };  
+//   checkForDraw(userScore, compScore);
+// }
+
+  // userScore === compScore ? tieBreakRound(userScore, compScore)
+
+// choiceBtns, questionText, playAgainText
+// document.querySelector("#gameHeader").innerText = "ROCK PAPER SCISSORS!"
+
+// console.log('userPlay: ', userPlay);
+
+// console.log('viewId: ', viewId);
+// console.log('views: ', views);
