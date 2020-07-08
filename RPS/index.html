@@ -8,45 +8,33 @@
   </head>
   <body>
     <header id="gameHeader" class="game-header">ROCK PAPER SCISSORS</header>
-    <!-- <div id="gameOver" class="game-header hidden">GAME OVER!</div> -->
     <main>
-
       <section id="choice" class="game choice-section hidden">
-        
         <div class="choice choice-text"> 
           <h3 class="text-choice">OVERALL SCORE</h3> 
-
           <div id="score-choice" class="score choice-wins">         
-            
             <div class="wins user-wins">
               <h4 class="wins-text">USER</h4>
               <h4 class="wins-text wins-number wins-user">#</h4>
             </div>                        
-            
             <div class="wins computer-wins">
               <h4 class="wins-text">COMPUTER</h4>
               <h4 class="wins-text wins-number wins-comp">#</h4>
             </div>
-
           </div>
         </div>  
-
         <div id="choiceBtns"> 
-          
           <div class="game-buttons choice-buttons">
             <button id="rock" class="play choice-btn rock">ROCK</button>
             <button id="paper" class="play choice-btn paper">PAPER</button>
             <button id="scissors" class="play choice-btn scissors">SCISSORS</button>
           </div>            
           <h2 class="choice-header click">'click' your choice now</h2>
-        
         </div>              
-        
       </section>
       <section id="play" class="play-section hidden">
         <div class="play"> 
           <h2 id="roundHeader" class="game round-header">THIS ROUND</h2>
- 
           <div class="game-play"> 
             <div class="user-play round-play">
               <h2 class="user-play-message play-msg">USER PLAYED:</h2>
@@ -63,10 +51,8 @@
           <div class="game round-message round-outcome">
             <h2 id="round-outcome">round-outcome</h2>               
           </div> 
-
         </div>
       </section>
-      
       <section id="nextRound" class="game-question nextRound-section hidden">     
         <div class="game question nextRound-text">
           <h4 id="round-text">Ready for the next round of ROCK PAPER SCISSORS?</h4>            
@@ -76,20 +62,23 @@
           <button class="play round-btn round-no">NO</button>
         </div>
       </section> 
-
       <section id="question" class="game-question">
         <div class="game question question-text">
           <h2 id="questionText">Do you want to play ROCK PAPER SCISSORS?</h2> 
           <h2 id="playAgainText" class="hidden">PLAY AGAIN?</h2>            
-           
         </div>
         <div id="questionBtns" class="game-buttons">
           <button class="playQ yes">LETS DO THIS!</button>
           <button class="playQ no">NOT RIGHT NOW </button>
         </div>  
       </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
 
-      <!-- <section id="play" class="play-section hidden">
+    <!-- 
+      <section id="play" class="play-section hidden">
         <div class="play">   
           <div class="game-play">
             <div class="user-play round-play">
@@ -106,36 +95,30 @@
             <h2>round-outcome</h2>           
           </div>
         </div>
-      </section> -->
+      </section>
 
-
-
-          <!-- <div class="choice round choice-text">
-            <h3 id="round-text" class="round-text text-choice">OVERALL SCORE</h3>        
-          
-            <div id="score-round" class="score choice-wins round-wins">              
-              <div class="wins user-wins">
-                <h4 class="wins-text">USER</h4>
-                <h4 class="wins-text wins-number wins-user">#</h4>
-              </div>                           
-              <div class="wins computer-wins">
-                <h4 class="wins-text">COMP</h4>
-                <h4 class="wins-text wins-number wins-comp">#</h4>
-              </div>
-            </div>
+      <div class="choice round choice-text">
+        <h3 id="round-text" class="round-text text-choice">OVERALL SCORE</h3>        
+        <div id="score-round" class="score choice-wins round-wins">              
+          <div class="wins user-wins">
+            <h4 class="wins-text">USER</h4>
+            <h4 class="wins-text wins-number wins-user">#</h4>
+          </div>                           
+          <div class="wins computer-wins">
+            <h4 class="wins-text">COMP</h4>
+            <h4 class="wins-text wins-number wins-comp">#</h4>
           </div>
+        </div>
+      </div>
+      <div class="game question round-question">
+        <h2>Ready for the next round of ROCK PAPER SCISSORS?</h2>            
+      </div>
+      <div class="game-buttons round-buttons yes-btns">
+        <button class="play round-yes">YES</button>
+        <button class="play round no">NO</button>
+      </div>
 
-          <div class="game question round-question">
-            <h2>Ready for the next round of ROCK PAPER SCISSORS?</h2>            
-          </div>
-          <div class="game-buttons round-buttons yes-btns">
-            <button class="play round-yes">YES</button>
-            <button class="play round no">NO</button>
-          </div> -->
+    -->
 
 
 
-    </main>
-    <script src="main.js"></script>
-  </body>
-</html>

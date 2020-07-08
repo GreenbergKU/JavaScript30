@@ -6,8 +6,6 @@ let gameMessage;
 
 document.onload = askGameQuestion();
 
-// document.querySelector(".choice-buttons").addEventListener('click', playGame);
-
 function askGameQuestion() {  
   document.querySelector(".yes").addEventListener('click', loadGame);
 }
@@ -29,7 +27,6 @@ function loadAdditionalRound() {
   computerWins = 0;
   displayWins();
 }
-// choiceBtns, questionText, playAgainText
 
 function displayWins() {
   const score = document.querySelector(".score");
@@ -166,3 +163,7 @@ function findGameWinner(userScore, compScore) {
 
 // console.log('viewId: ', viewId);
 // console.log('views: ', views);
+
+// document.querySelector(".choice-buttons").addEventListener('click', playGame);
+
+// choiceBtns, questionText, playAgainText
